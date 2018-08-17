@@ -1,3 +1,7 @@
+#! python3
+"""Don Helper
+"""
+
 import pyautogui, threading, time, os, logging, sys, random, copy
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
