@@ -6,9 +6,12 @@ import pyautogui, threading, time, os, logging, sys, random, copy
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
 
+clickLock = threading.Lock()
+
 MOUSE_SPEED = 0.2
 CHASE_MOB = 'chasemob.png'
 MAXIMIZE = 'maximize.png'
+
 
 def main():
     logging.info('Don Helper Started. Press Ctrl-C to abort at any time.')
@@ -23,12 +26,13 @@ def moveToAndClick(pos):
     pyautogui.click()
 
 def locateImageAndClick(image):
-    pos = pyautogui.locateCenterOnScreen(imPath(image), grayscale=False)
-    if pos is not None:
-        moveToAndClick(pos)
+    with clickLock:
+        pos = pyautogui.locateCenterOnScreen(imPath(image), grayscale=False)
+        if pos is not None:
+            moveToAndClick(pos)
 
 def maximizeWindow():
-   locateImageAndClick(MAXIMIZE)
+    locateImageAndClick(MAXIMIZE)
 
 def checkChase():
     locateImageAndClick(CHASE_MOB)
