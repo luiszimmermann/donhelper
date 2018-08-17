@@ -8,7 +8,7 @@ MAXIMIZE = 'maximize.png'
 
 def main():
     logging.info('Don Helper Started. Press Ctrl-C to abort at any time.')
-    maximizeWindow()
+    checkChase()
 
 def imPath(filename):
     return os.path.join('images', filename)
